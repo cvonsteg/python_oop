@@ -22,7 +22,13 @@ class Employee:
     def apply_raise(self):
         self.salary = (self.salary * self.raise_amount)
 
-    
+
+    def __repr__(self):
+        return f'Employee("{self.first}", "{self.last}", "{self.salary}")'
+
+    def __str__(self):
+        return f'{self.full_name()}-{self.email}'
+
     @classmethod
     def set_raise_amount(cls, amount : float):
         cls.raise_amount = amount

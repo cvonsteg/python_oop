@@ -79,3 +79,8 @@ print(f'{dev1.full_name()} is being moved to a different manager.')
 man1.remove_employee(dev1)
 print(f'{man1.first}\'s new team is: ')
 man1.print_emps()
+
+# Magic Methods
+print('\nMagic Methods: ')
+print('__repr__ magic method: {}'.format(man1.__repr__()))
+print('__str__ magic method: {}'.format(man1.__str__()))
