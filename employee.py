@@ -10,14 +10,32 @@ class Employee:
         self.first = first
         self.last = last
         self.salary = salary
-        self.email = first + '.' + last + '@company.com'
-
+        
         Employee.num_of_emps += 1
 
-    
+    # Anything that derives from the fundamental attributes of the class
+    # should have a @property decorator.  This makes it into a method which
+    # is updated if the init attributes are changed.  
+    @property
+    def email(self):
+        return '{}.{}@company.com'.format(self.first, self.last)
+
+    @property
     def full_name(self):
         return('{} {}'.format(self.first, self.last))
 
+    # Setters allow you to set the __init__ attribute it's inheritors
+    @full_name.setter
+    def full_name(self, name):
+        first, last = name.split(' ')
+        self.first = first
+        self.last = last
+
+    @full_name.deleter
+    def full_name(self):
+        print('{} is gone.'.format(self.full_name))
+        self.first = None
+        self.last = None
 
     def apply_raise(self):
         self.salary = (self.salary * self.raise_amount)
@@ -27,7 +45,7 @@ class Employee:
         return f'Employee("{self.first}", "{self.last}", "{self.salary}")'
 
     def __str__(self):
-        return f'{self.full_name()}-{self.email}'
+        return f'{self.full_name}-{self.email}'
 
     @classmethod
     def set_raise_amount(cls, amount : float):
@@ -83,7 +101,7 @@ class Manager(Employee):
 
     def print_emps(self):
         for emp in self.employees:
-            print('---', emp.full_name())
+            print('---', emp.full_name)
 
 
 
