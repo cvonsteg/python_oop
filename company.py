@@ -1,4 +1,4 @@
-from employee import Employee
+from employee import Employee, Developer, Manager
 
 # Creating instances    
 emp1 = Employee('Tino', 'von Stegmann', 50000)
@@ -46,3 +46,36 @@ import datetime
 today = datetime.datetime.now()
 print(f'Today\'s date: {today}')
 print(f'Is today a weekday?  Computer says: {Employee.is_workday(today)}')
+
+# Create developer
+dev1 = Developer('Childish', 'Gambino', '1000000', 'fortran')
+print("\n New dev has joined the dev team: ")
+print(f'Name: {dev1.full_name()}')
+print(f'Email: {dev1.email}')
+print(f'Salary: {dev1.salary}')
+print(f'Language: {dev1.language}')
+print(f'Employee Count: {Developer.num_of_emps}')
+print(f'Number of Devs: {Developer.num_of_devs}')
+
+dev2 = Developer('Paul', 'Kalkbrenner', '150000', 'C++')
+print("\n New dev has joined the dev team: ")
+print(f'Name: {dev2.full_name()}')
+print(f'Email: {dev2.email}')
+print(f'Salary: {dev2.salary}')
+print(f'Language: {dev2.language}')
+print(f'Employee Count: {Developer.num_of_emps}')
+print(f'Number of Devs: {Developer.num_of_devs}')
+
+# Create Manager
+man1 = Manager('Jurgen', 'Klopp', '1000001', [dev1])
+print('\nNew Senior Manager: {}'.format(man1.full_name()))
+print(f'{man1.first} manages: ')
+man1.print_emps()
+print(f'{man1.first} now also manages {dev2.full_name()}')
+man1.add_employee(dev2)
+print(f'{man1.first} now manages: ')
+man1.print_emps()
+print(f'{dev1.full_name()} is being moved to a different manager.')
+man1.remove_employee(dev1)
+print(f'{man1.first}\'s new team is: ')
+man1.print_emps()
